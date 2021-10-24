@@ -10,34 +10,18 @@
     </head>
 
     <body>
-        <h2 style="background-color: rgb(219, 219, 219); padding: 10px">
-            Event Organizer
-        </h2>
+        <div class = "title" style ="margin:-50px; background-color:dodgerblue; ">
+            <h1>Event Organizer</h1>
+             <button onclick="document.location='createEvent.html'" class="btn-primary" style = "font-size:20px; margin-right: 20px; float:right; border-radius: 8px;">Make an Event</button>
+        </div>
 
-        <p style="position:relative; left:50px; top:10px">Current Events:</p>
-
-        <div class="Event Dropdown" style="padding: 25px; background-color:rgb(219, 219, 219); border-radius: 25px">
+        <div class="Event Dropdown" style="padding: 25px; background-color:rgb(186, 230, 250); border-radius: 25px; position:relative; margin-top: 100px;">
             
             <ul id = 'eventList'>
 
             </ul>
         </div>
 
-        <div class="Event Dropdown">
-            <button class="btn btn-secondary dropdown-toggle" style="width: 100px; position:fixed; top: 170px; right:100px" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-
-            <ul class="dropdown-menu" aria-labelledby="filterButton">
-                <div class="card" style="width: 100px;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item dropdown-menu">Category</li>
-                        <li class="list-group-item dropdown-menu">Time</li>
-                        <li class="list-group-item dropdown-menu">Location</li>
-                    </ul>
-                  </div>
-            </ul>
-        </div>
         <footer>
             <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William Zhu </div>
         </footer>
@@ -80,7 +64,7 @@
         
 
             return `<div class="Event Dropdown" style="padding: 10px"; background-color:rgb(219, 219, 219); border-radius: 25px">
-                    <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-primary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         ${doc.data().Category} ${doc.data().Class}: ${doc.data().Date}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id = "dropMenu">

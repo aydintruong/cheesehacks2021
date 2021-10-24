@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="container" style="background-color:rgb(219, 219, 219); border-radius: 25px">
+        <div class="container" style="background-color:rgb(186, 230, 250); border-radius: 25px">
           <form onsubmit="return confirm('Is all of your data correct?');">
             <h3 style="padding-top: 20px;">Create new Event</h3>
             <SELECT id="category" required>
@@ -55,9 +55,10 @@
               <input type="date" id="date" required>
             </div>
             <p></p>
-          <div class="col-auto" style="padding-bottom: 20px;">
-            <button type="submit" id="btnSubmit" class="btn btn-secondary mb-2">Submit</button>
-          </div> 
+            <div class="col-auto" style="padding-bottom: 20px;">
+              <button type="submit" id="btnSubmit" class="btn btn-primary mb-2">Submit</button>
+            </div> 
+            <button onclick="document.location='index.html'" class="btn btn-light" style = "font-size:15px; border-radius: 8px; float:right">Return to Home Page</button>
           </form>
     
         </div> 
