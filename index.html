@@ -13,27 +13,14 @@
 
     </style>
 
-    <script>
-        function addEvent(){
-            var location = prompt("Please enter the Location", "");
-            var time = prompt("Please enter the Time", "12:30PM");
-            
-        }
-    </script>
-
     <body>
         <h1>
             Event Organizer
         </h1>
 
         <p>Current Events</p>
-
-        <!-- Window button -->
-        <button class="btn btn-med btn-outline-dark" type="button" onclick="addEvent()">Add Event</button>
-
-        <p> </p> 
-
-        <div class="Event Dropdown">
+        
+        <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Event Name + Time
             </button>
@@ -50,18 +37,48 @@
               <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
             </ul>
         </div>
+        <p> </p>
 
-       
-    </body>
-    <script type="module">
+        <div class="container">
+          <form>
+            <div class="dropdown">
+                <label for="formGroupExampleInput">Class Code:</label>
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Select Code</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    
+                </ul>
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Class #:</label>
+              <input type="text" id="classNum" class="form-control" id="formGroupExampleInput" placeholder="Ex: 240 for CS240">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Contact Information (Email)</label>
+              <input type="text" id="contactInfo" class="form-control" id="formGroupExampleInput" placeholder="johndoe@wisc.edu">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Max attendance numbers</label>
+              <input type="text" id="attendanceNum" class="form-control" id="formGroupExampleInput" placeholder="10">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Location</label>
+              <input type="text" id="location" class="form-control" id="formGroupExampleInput" placeholder="Public spaces only">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Time</label>
+              <input type="text" id="time" class="form-control" id="formGroupExampleInput" placeholder="Between 10am and 6pm">
+            </div>
+          </form>
+          <div class="col-auto">
+            <button type="submit" id="btnSubmit" class="btn btn-primary mb-2">Submit</button>
+          </div> 
+        </div> 
+     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
         import { getFirestore} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
@@ -73,22 +90,34 @@
           appId: "1:186083738529:web:a252e82dbd2fbda6a741e0",
           measurementId: "G-VVNEZWTWSF",
         };
-
+    
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore();
-        try {
-        const docRef = await addDoc(collection(db, "users"), {
-          first: "Ada",
-          last: "Lovelace",
-          born: 1815
-        });
-        console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-
-
-      </script>
+            
+        var btnSubmit = document.getElementById("btnSubmit");
+        var num = document.getElementById("classNum");
+        var contact = document.getElementById("contactInfo");
+        var attendance = document.getElementById("attendanceNum");
+        var loc = document.getElementById("location");
+        var time = document.getElementById("time");
+        
+        btnSubmit.addEventListener("click", function(){
+          try {
+            const docRef = addDoc(collection(db, "study"), {
+            Class: num.value,
+            ContactInformation: contact.value,
+            MaxAttendance: attendance.value,
+            Location: loc.value,
+            Time: time.value,
+            IsCancelled: false,
+            NumberAttending: 1
+          });
+          } catch (e) {
+              console.error("Error adding document: ", e);
+          }
+        }, false);
+       </script>
+  </body>    
 </html>
