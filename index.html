@@ -109,39 +109,6 @@
               console.error("Error adding document: ", e);
           }
         }, false);
-        async function createStudy() {
-          try {
-            const docRef = await addDoc(collection(db, "study"), {
-            Class: q1,
-            ContactInformation: q2,
-            MaxAttendance: q3,
-            Location: q4,
-            Time: q5,
-            IsCancelled: false,
-            NumberAttending: 1
-          });
-          console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-              console.error("Error adding document: ", e);
-          }
-        }
-
-        async function testStudy() {
-          try {
-            const docRef = await addDoc(collection(db, "study"), {
-            Class: "300",
-            ContactInformation: "300",
-            MaxAttendance: "300",
-            Location: "300",
-            Time: "300",
-            IsCancelled: false,
-            NumberAttending: 1
-          });
-          console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-              console.error("Error adding document: ", e);
-          }
-        }
        </script>
   </body>    
 </html>
