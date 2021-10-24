@@ -6,9 +6,8 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
-        <div class="container" style="color: rgb(14, 56, 110); background-color:rgb(219, 219, 219); border-radius: 25px">
-          <form>
+        <div class="container" style="color: rgb(14, 56, 110); background-color:rgb(210, 244, 255); border-radius: 25px">
+          <form onsubmit="return confirm('Is all of your data correct?');">
             <h3 style="padding-top: 20px;">Create new Event</h3>
             <SELECT id="category" required>
               <option value='' selected>Select a Category </option>
@@ -56,17 +55,24 @@
               <input type="date" id="date" required>
             </div>
             <p></p>
-          </form>
           <div class="col-auto" style="padding-bottom: 20px;">
             <button type="submit" id="btnSubmit" class="btn btn-secondary mb-2">Submit</button>
           </div> 
+          </form>
+    
         </div> 
-     <script type="module">
+    
+        <footer>
+      <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William Zhu </div>
+    </footer>
+    
+    <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
         import { getFirestore} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
+        
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
