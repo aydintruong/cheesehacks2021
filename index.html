@@ -20,8 +20,10 @@
             <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Event Name + Time
             </button>
+            <ul id = 'eventList'>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            </ul>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id = "dropMenu">
                 <div class="card" style="width: 500px;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Location: <small class="text-muted">Bascom Hall</small></li>
@@ -51,7 +53,7 @@
             </ul>
         </div>
      <footer>
-      <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William </div>
+      <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William Zhu </div>
      </footer>
      <script type="module">
         // Import the functions you need from the SDKs you need
@@ -80,8 +82,9 @@
         const eventsList = [];
 
         studyListRef = db.collection('study');
+        const dropMenu = document.getElementById('eventList');
 
-        deleteOutdated();
+        //deleteOutdated();
         
         unsubscribe = studyListRef
           .where("IsCancelled", "==", false).onSnapshot(querySnapshot => {
@@ -89,10 +92,21 @@
             const eventStudy = new StudyEvent(doc.data().Category, doc.data().Class, doc.data().ContactInformation,doc.data().Date,doc.data().IsCancelled, doc.data().MaxAttendance, doc.data().NumberAttending, doc.data().Time);
             eventsList.push(eventStudy);
 
+            return `<div class="card" style="width: 500px;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Location: <small class="text-muted">${doc.data().Location}</small></li>
+                        <li class="list-group-item">Class: <small class="text-muted">${doc.data().Category}  ${doc.data().Class}</small></li>
+                        <li class="list-group-item">Time: <small class="text-muted">${doc.data().Time}</small></li>
+                        <li class="list-group-item">Time: <small class="text-muted">${doc.data().Date}</small></li>
+                        <li class="list-group-item">Max Group Size: <small class="text-muted">${doc.data().MaxAttendance}</small></li>
+                        <li class="list-group-item">Number Attending: <small class="text-muted">${doc.data().NumberAttending}</small></li>
+                    </ul>
+                  </div></li>`
+            
+
           });
-          //eventsList.forEach(element => console.log(element));
+          dropMenu.innerHTML = studyEvents.join('');
         });
-      
         function joinEvent(){ 
             
         }
@@ -100,16 +114,15 @@
         function deleteOutdated(){
           let eventList;
           eventList = studyListRef
-          .where("IsCancelled", "==", false).onSnapshot(querySnapshot => {
+            .where("IsCancelled", "==", false).onSnapshot(querySnapshot => {
           const studyEvents = querySnapshot.docs.map(doc => {
             let eventDate = doc.data().Date;
 
             if(new Date(eventDate).valueOf() < new Date().valueOf()) {
               doc.ref.delete();
-              //deleteDoc(doc);
             }
           });
-        });        
+        });      
         }
         class StudyEvent {
         constructor (category, classNum, contactInfo, date, isCancelled, location, maxAttendance, numAttending, time) {

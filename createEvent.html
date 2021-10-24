@@ -64,7 +64,7 @@
         </div> 
     
         <footer>
-        <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William </div>
+        <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William Zhu </div>
     </footer>
     
     <script type="module">
@@ -101,9 +101,7 @@
         var date = document.getElementById("date");
         
         btnSubmit.addEventListener("click", function(){
-          console.log('submitted');
           try {
-            console.log('???');
             const docRef = addDoc(collection(db, "study"), {
             Category: category.value,
             Class: num.value,
