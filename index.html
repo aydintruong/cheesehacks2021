@@ -7,15 +7,15 @@
     </head>
 
     <body>
-        <h1>
+        <h2 style="background-color: rgb(219, 219, 219); padding: 10px">
             Event Organizer
-        </h1>
+        </h2>
 
-        <p>Current Events</p>
+        <p style="position:relative; left:50px; top:10px">Current Events:</p>
 
-        <div class="Event Dropdown">
+        <div class="Event Dropdown" style="padding: 25px; background-color:rgb(219, 219, 219); border-radius: 25px">
             <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Event Name + Time
+              Event A Name: Time
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -29,21 +29,36 @@
               <li><a class="dropdown-item" onclick="joinEvent()">Join Event</a></li>
               <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
             </ul>
+            <p> </p>
+            <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                Event B Name: Time
+              </button>
+  
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <div class="card" style="width: 500px;">
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Location: <small class="text-muted">Bascom Hall</small></li>
+                          <li class="list-group-item">Spots Filled: <small class="text-muted">X of X spots filled</small></li>
+                      </ul>
+                    </div>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" onclick="joinEvent()">Join Event</a></li>
+                <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
+              </ul>
         </div>
 
         <div class="Event Dropdown">
-            <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" style="width: 100px; position:fixed; top: 170px; right:100px" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false">
               Filter
             </button>
 
             <ul class="dropdown-menu" aria-labelledby="filterButton">
-                <div class="card" style="width: 500px;">
+                <div class="card" style="width: 100px;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item dropdown-menu">Category</li>
                         <li class="list-group-item dropdown-menu">Time</li>
                         <li class="list-group-item dropdown-menu">Location</li>
                     </ul>
-                    <li><hr class="dropdown-divider"></li>
                   </div>
             </ul>
         </div>
