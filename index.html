@@ -12,12 +12,26 @@
         }
 
     </style>
+
+    <script>
+        function addEvent(){
+            var location = prompt("Please enter the Location", "");
+            var time = prompt("Please enter the Time", "12:30PM");
+            
+        }
+    </script>
+
     <body>
         <h1>
             Event Organizer
         </h1>
 
         <p>Current Events</p>
+
+        <!-- Window button -->
+        <button class="btn btn-med btn-outline-dark" type="button" onclick="addEvent()">Add Event</button>
+
+        <p> </p> 
 
         <div class="Event Dropdown">
             <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,7 +44,7 @@
                         <li class="list-group-item">Location:</li>
                         <li class="list-group-item">Spots Filled:</li>
                     </ul>
-                  </div>
+                </div>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Join Event</a></li>
               <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
@@ -74,6 +88,7 @@
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+
 
       </script>
 </html>
