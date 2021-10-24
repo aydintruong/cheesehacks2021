@@ -53,7 +53,7 @@
             </ul>
         </div>
      <footer>
-      <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha - William Zhu </div>
+      <div>2021 CheeseHacks - Aydin Truong - Pravin Boopathy - Manisha Pillai - William Zhu </div>
      </footer>
      <script type="module">
         // Import the functions you need from the SDKs you need
@@ -83,8 +83,6 @@
 
         studyListRef = db.collection('study');
         const dropMenu = document.getElementById('eventList');
-
-        //deleteOutdated();
         
         unsubscribe = studyListRef
           .where("IsCancelled", "==", false).onSnapshot(querySnapshot => {
@@ -97,7 +95,7 @@
                         <li class="list-group-item">Location: <small class="text-muted">${doc.data().Location}</small></li>
                         <li class="list-group-item">Class: <small class="text-muted">${doc.data().Category}  ${doc.data().Class}</small></li>
                         <li class="list-group-item">Time: <small class="text-muted">${doc.data().Time}</small></li>
-                        <li class="list-group-item">Time: <small class="text-muted">${doc.data().Date}</small></li>
+                        <li class="list-group-item">Date: <small class="text-muted">${doc.data().Date}</small></li>
                         <li class="list-group-item">Max Group Size: <small class="text-muted">${doc.data().MaxAttendance}</small></li>
                         <li class="list-group-item">Number Attending: <small class="text-muted">${doc.data().NumberAttending}</small></li>
                     </ul>
@@ -111,18 +109,26 @@
             
         }
 
-        function deleteOutdated(){
-          let eventList;
-          eventList = studyListRef
+        function cleanData(){
+          let eventListOutdated;
+          let eventListIncomplete;
+          eventListOutdated = studyListRef
             .where("IsCancelled", "==", false).onSnapshot(querySnapshot => {
           const studyEvents = querySnapshot.docs.map(doc => {
-            let eventDate = doc.data().Date;
-
+            let eventDate = doc.data().date;
             if(new Date(eventDate).valueOf() < new Date().valueOf()) {
+              console.log("Deleting" + doc.data());
               doc.ref.delete();
             }
-          });
-        });      
+            });
+          });  
+          
+          eventListIncomplete = studyListRef
+            .where("Time", "==", "").onSnapshot(querySnapshot => {    
+              const studyEvents = querySnapshot.docs.map(doc => {
+                doc.ref.delete();
+            });
+          });  
         }
         class StudyEvent {
         constructor (category, classNum, contactInfo, date, isCancelled, location, maxAttendance, numAttending, time) {
