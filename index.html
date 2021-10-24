@@ -25,18 +25,40 @@
               <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
             </ul>
         </div>
-
-       
-    </body>
-    <script type="module">
+        <button type="submit" class="btn btn-primary mb-2" onclick="testStudy()">Submit</button>
+        <div class="container">
+          <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Class #:</label>
+              <input type="text" id="question1" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Contact Information (Email)</label>
+              <input type="text" id="question2" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Max attendance numbers</label>
+              <input type="text" id="question3" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Location</label>
+              <input type="text" id="question4" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Time</label>
+              <input type="text" id="question5" class="form-control" id="formGroupExampleInput" placeholder="">
+            </div>
+          </form>
+          <div class="col-auto">
+            <button type="submit" id="btnSubmit" class="btn btn-primary mb-2">Submit</button>
+          </div> 
+        </div> 
+     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
         import { getFirestore} from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
@@ -48,21 +70,67 @@
           appId: "1:186083738529:web:a252e82dbd2fbda6a741e0",
           measurementId: "G-VVNEZWTWSF",
         };
-
+    
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore();
-        try {
-        const docRef = await addDoc(collection(db, "users"), {
-          first: "Ada",
-          last: "Lovelace",
-          born: 1815
-        });
-        console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
+            
+        var btnSubmit = document.getElementById("btnSubmit");
+        var q1 = document.getElementById("question1");
+        var q2 = document.getElementById("question2");
+        var q3 = document.getElementById("question3");
+        var q4 = document.getElementById("question4");
+        var q5 = document.getElementById("question5");
+        
+        btnSubmit.addEventListener("click", function(){
+          try {
+            const docRef = addDoc(collection(db, "study"), {
+            Class: q1.value,
+            ContactInformation: q2.value,
+            MaxAttendance: q3.value,
+            Location: q4.value,
+            Time: q5.value,
+            IsCancelled: false,
+            NumberAttending: 1
+          });
+          } catch (e) {
+              console.error("Error adding document: ", e);
+          }
+        }, false);
+        async function createStudy() {
+          try {
+            const docRef = await addDoc(collection(db, "study"), {
+            Class: q1,
+            ContactInformation: q2,
+            MaxAttendance: q3,
+            Location: q4,
+            Time: q5,
+            IsCancelled: false,
+            NumberAttending: 1
+          });
+          console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+              console.error("Error adding document: ", e);
+          }
         }
 
-      </script>
+        async function testStudy() {
+          try {
+            const docRef = await addDoc(collection(db, "study"), {
+            Class: "300",
+            ContactInformation: "300",
+            MaxAttendance: "300",
+            Location: "300",
+            Time: "300",
+            IsCancelled: false,
+            NumberAttending: 1
+          });
+          console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+              console.error("Error adding document: ", e);
+          }
+        }
+       </script>
+  </body>    
 </html>
