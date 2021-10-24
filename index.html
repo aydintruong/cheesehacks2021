@@ -17,39 +17,10 @@
         <p style="position:relative; left:50px; top:10px">Current Events:</p>
 
         <div class="Event Dropdown" style="padding: 25px; background-color:rgb(219, 219, 219); border-radius: 25px">
-            <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Event A Name: Time
-            </button>
+            
             <ul id = 'eventList'>
 
             </ul>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id = "dropMenu">
-                <div class="card" style="width: 500px;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Location: <small class="text-muted">Bascom Hall</small></li>
-                        <li class="list-group-item">Spots Filled: <small class="text-muted">X of X spots filled</small></li>
-                    </ul>
-                  </div>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" onclick="joinEvent()">Join Event</a></li>
-              <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
-            </ul>
-            <p> </p>
-            <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                Event B Name: Time
-              </button>
-  
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                  <div class="card" style="width: 500px;">
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item">Location: <small class="text-muted">Bascom Hall</small></li>
-                          <li class="list-group-item">Spots Filled: <small class="text-muted">X of X spots filled</small></li>
-                      </ul>
-                    </div>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" onclick="joinEvent()">Join Event</a></li>
-                <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
-              </ul>
         </div>
 
         <div class="Event Dropdown">
@@ -106,16 +77,28 @@
           const studyEvents = querySnapshot.docs.map(doc => {
             const eventStudy = new StudyEvent(doc.data().Category, doc.data().Class, doc.data().ContactInformation,doc.data().Date,doc.data().IsCancelled, doc.data().MaxAttendance, doc.data().NumberAttending, doc.data().Time);
             eventsList.push(eventStudy);
+        
 
-            return `<div class="card" style="width: 500px;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Location: <small class="text-muted">${doc.data().Location}</small></li>
-                        <li class="list-group-item">Class: <small class="text-muted">${doc.data().Category}  ${doc.data().Class}</small></li>
-                        <li class="list-group-item">Time: <small class="text-muted">${doc.data().Time}</small></li>
-                        <li class="list-group-item">Time: <small class="text-muted">${doc.data().Date}</small></li>
-                        <li class="list-group-item">Max Group Size: <small class="text-muted">${doc.data().MaxAttendance}</small></li>
-                        <li class="list-group-item">Number Attending: <small class="text-muted">${doc.data().NumberAttending}</small></li>
+            return `<div class="Event Dropdown" style="padding: 10px"; background-color:rgb(219, 219, 219); border-radius: 25px">
+                    <button class="btn btn-secondary dropdown-toggle" style="width: 500px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        ${doc.data().Category} ${doc.data().Class}: ${doc.data().Date}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id = "dropMenu">
+                        <div class="card" style="width: 500px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Location: <small class="text-muted">${doc.data().Location}</small></li>
+                                <li class="list-group-item">Class: <small class="text-muted">${doc.data().Category}  ${doc.data().Class}</small></li>
+                                <li class="list-group-item">Time: <small class="text-muted">${doc.data().Time}</small></li>
+                                <li class="list-group-item">Date: <small class="text-muted">${doc.data().Date}</small></li>
+                                <li class="list-group-item">Max Group Size: <small class="text-muted">${doc.data().MaxAttendance}</small></li>
+                                <li class="list-group-item">Number Attending: <small class="text-muted">${doc.data().NumberAttending}</small></li>
+                            </ul>
+                        </div>
+                        <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" onclick="joinEvent()">Join Event</a></li>
+                        </li>
                     </ul>
+                    <p> </p>
                   </div></li>`
             
 
