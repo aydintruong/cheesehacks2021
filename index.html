@@ -36,28 +36,28 @@
               <li><a class="dropdown-item" href="#">Contact Organizer</a></li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-primary mb-2" onclick="testStudy()">Submit</button>
+
         <div class="container">
           <form>
             <div class="form-group">
               <label for="formGroupExampleInput">Class #:</label>
-              <input type="text" id="question1" class="form-control" id="formGroupExampleInput" placeholder="">
+              <input type="text" id="classNum" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Contact Information (Email)</label>
-              <input type="text" id="question2" class="form-control" id="formGroupExampleInput" placeholder="">
+              <input type="text" id="contactInfo" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Max attendance numbers</label>
-              <input type="text" id="question3" class="form-control" id="formGroupExampleInput" placeholder="">
+              <input type="text" id="attendanceNum" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Location</label>
-              <input type="text" id="question4" class="form-control" id="formGroupExampleInput" placeholder="">
+              <input type="text" id="location" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Time</label>
-              <input type="text" id="question5" class="form-control" id="formGroupExampleInput" placeholder="">
+              <input type="text" id="time" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
           </form>
           <div class="col-auto">
@@ -88,20 +88,20 @@
         const db = getFirestore();
             
         var btnSubmit = document.getElementById("btnSubmit");
-        var q1 = document.getElementById("question1");
-        var q2 = document.getElementById("question2");
-        var q3 = document.getElementById("question3");
-        var q4 = document.getElementById("question4");
-        var q5 = document.getElementById("question5");
+        var num = document.getElementById("classNum");
+        var contact = document.getElementById("contactInfo");
+        var attendance = document.getElementById("attendanceNum");
+        var loc = document.getElementById("location");
+        var time = document.getElementById("time");
         
         btnSubmit.addEventListener("click", function(){
           try {
             const docRef = addDoc(collection(db, "study"), {
-            Class: q1.value,
-            ContactInformation: q2.value,
-            MaxAttendance: q3.value,
-            Location: q4.value,
-            Time: q5.value,
+            Class: num.value,
+            ContactInformation: contact.value,
+            MaxAttendance: attendance.value,
+            Location: loc.value,
+            Time: time.value,
             IsCancelled: false,
             NumberAttending: 1
           });
